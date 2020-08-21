@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-
 #import "LBWeakProxy.h"
 
 @interface ViewController ()
@@ -28,8 +27,7 @@
 }
 
 - (void)timerTriggered:(NSTimer *)timer {
-    static NSInteger count = 1;
-    NSLog(@"-- %zd --", count++);
+    NSLog(@"timerTriggered");
 }
 
 - (void)dealloc {
