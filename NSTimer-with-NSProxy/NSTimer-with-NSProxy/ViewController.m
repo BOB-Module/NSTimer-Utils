@@ -22,8 +22,7 @@
     
     // 强引用链: self -> timer -> proxy , 而 proxy 弱引用 self, 不会形成循环引用
     LBWeakProxy *proxy = [LBWeakProxy proxyWithTarget:self];
-    self.timer = [NSTimer timerWithTimeInterval:1 target:proxy selector:@selector(timerTriggered:) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:proxy selector:@selector(timerTriggered:) userInfo:nil repeats:YES];
 }
 
 - (void)timerTriggered:(NSTimer *)timer {
