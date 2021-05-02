@@ -11,9 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSTimer (EOCBlocksSupport)
 
-+ (NSTimer *)eoc_scheduledTimerWithTimeInterval:(NSTimeInterval)interval
-                                        repeats:(BOOL)repeats
-                                          block:(void (^)(NSTimer *timer))block;
++ (NSTimer *)eoc_scheduledTimerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block;
 
 @end
 
