@@ -9,8 +9,12 @@
 
 @implementation NSTimer (EOCBlocksSupport)
 
-+ (NSTimer *)eoc_scheduledTimerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer * _Nonnull))block {
-    return [self scheduledTimerWithTimeInterval:interval target:self selector:@selector(eoc_blockInvoke:) userInfo:[block copy] repeats:YES];
++ (NSTimer *)eoc_scheduledTimerWithTimeInterval:(NSTimeInterval)timeInterval repeats:(BOOL)repeats block:(void (^)(NSTimer * _Nonnull))block {
+    return [self scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(eoc_blockInvoke:) userInfo:[block copy] repeats:YES];
+}
+
++ (NSTimer *)eoc_timerWithTimeInterval:(NSTimeInterval)timeInterval repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block {
+    return [self timerWithTimeInterval:timeInterval target:self selector:@selector(eoc_blockInvoke:) userInfo:[block copy] repeats:repeats];
 }
 
 + (void)eoc_blockInvoke:(NSTimer *)timer {

@@ -18,10 +18,21 @@
     [super viewDidLoad];
     
     __weak typeof(self) weakSelf = self;
-    self.timer = [NSTimer eoc_scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+    
+    // 1. 使用 currentRunLoop 的 default mode
+    /*
+     self.timer = [NSTimer eoc_scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        NSLog(@"%@, %@", strongSelf, timer);
+     }];
+    */
+    
+    // 2. 可自行选择 mode
+    self.timer = [NSTimer eoc_timerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         NSLog(@"%@, %@", strongSelf, timer);
     }];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)dealloc {
